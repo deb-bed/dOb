@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mObywatel 2.0</title>
+    <link rel="shortcut icon" href="mobywatellogo.svg" type="image/x-icon">
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="https://ib05lvtzg55be6a6c6kpg3.ct8.pl/apka-3-0/manifest.json">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="logowanie.html"></iframe>
+
+    <!-- Rejestracja Service Workera -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('https://ib05lvtzg55be6a6c6kpg3.ct8.pl/apka-3-0/sw.js')
+                .then(registration => console.log('Service Worker zarejestrowany:', registration))
+                .catch(error => console.error('Błąd rejestracji Service Workera:', error));
+        }
+    </script>
+</body>
+</html>
