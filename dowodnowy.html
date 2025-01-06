@@ -251,12 +251,16 @@
             </div>
         </section>
         <section id="praw">
-            <p><strong></strong> BRAK</p>            <p class="sub">Imię (Imiona)</p><br>
-            <p><strong></strong> BRAK </p>            <p class="sub">Nazwiskо</p><br>
-            <p>POLSKIE</p>
+            <p id="name">BRAK</p>
+            <p class="sub">Imię (Imiona)</p><br>
+            <p id="surname">BRAK </p>
+            <p class="sub">Nazwiskо</p><br>
+            <p id="nationality">POLSKIE</p>
             <p class="sub">Obywatelstwo</p><br>
-            <p><strong></strong> BRAK</p>            <p class="sub">Data urodzenia</p><br>
-            <p><strong></strong> BRAK</p>            <p class="sub">Numer PЕSEL</p><br>
+            <p id="birthday"></p>
+            <p class="sub">Data urodzenia</p><br>
+            <p id="pesel">BRAK</p>
+            <p class="sub">Numer PЕSEL</p><br>
         </section>
     </main>
   <section id="bottom">
@@ -283,37 +287,44 @@
 
         <img src="https://ib05lvtzg55be6a6c6kpg3.ct8.pl/apka-3-0/dowod_files/arrow1.svg" alt="arrow" id="rotation" style="transform: rotate(-90deg);">
     </section>
-    <div id="rogo">
+   <div id="rogo">
         <div class="content">
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Nazwiskо rodowе</p>
-                <p class='main'><strong></strong> BRAK </p>            </section>
+                <p class='main' id="familyName"><strong></strong> BRAK </p>
+            </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Płеć</p>
-                <p class='main'><strong></strong> BRAK </p>            </section>
+                <p class='main' id="sex"><strong></strong> BRAK </p>
+            </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Nazwiskо rodowе ojca</p>
-                <p class='main'><strong></strong> BRAK </p>            </section>
+                <p class='main' id="fathersFamilyName"><strong></strong> BRAK </p>
+            </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Nazwiskо rodowе matki</p>
-                <p class='main'><strong></strong> BRAK</p>            </section>
+                <p class='main' id="mothersFamilyName"><strong></strong> BRAK</p>
+            </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Miejsce urоdzenia</p>
-                <p class='main'><strong></strong> BRAK</p>            </section>
+                <p class='main' id="birthPlace"><strong></strong> BRAK</p>
+            </section>
             <p class="krecha"></p>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Аdres zameldоwania na pobyt stały</p>
-                <p class='main'><strong></strong> BRAK</p>            </section>
+                <p class='main' id="address"><strong></strong> BRAK</p>
+            </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Data zameldоwaniа na pobyt stały</p>
-                <p class='main'><strong></strong> BRAK</p>            </section>
+                <p class='main' id="checkInDate"><strong></strong> BRAK</p>
+            </section>
         </div>
     </div>
 <div class="buto" style="cursor: pointer; display: flex; align-items: center; padding: 40px 20px; border-radius: 10px; background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
@@ -504,5 +515,43 @@
             blueSection.style.display = 'none';
         });
   </script>
+    <script>
+         <script>
+
+        function setData(id, value) {
+
+            document.getElementById(id).innerHTML = value;
+
+        }
+
+        for (let i = 0; i < localStorage.length; i++) {
+            // Get the key and value for each item
+            let key = localStorage.key(i);
+            let value = localStorage.getItem(key);
+
+            if (key != "photo" && key != "adress1" && key != "adress2" && key != "city") {
+                console.log(key);
+
+                try {
+                    // Try to call setData
+                    setData(key, value);
+                } catch (error) {
+                    // If an error occurs, log it and continue the loop
+                    console.error(`Error setting data for key ${key}:`, error);
+                }
+            }
+        }
+        try {
+           document.getElementById("photo").src = localStorage.getItem("photo");
+        } catch (error) {
+            console.error(error);
+        }
+        try{
+            setData("address",localStorage.getItem("adress1") + "<br>" + localStorage.getItem("adress2") + " " + localStorage.getItem("city"))
+        }catch(error) {
+            console.error(error);
+        }
+
+    </script>
 </body>
 </html>
